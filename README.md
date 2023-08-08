@@ -16,12 +16,17 @@ In most cases at multiple frequencies real-time processing can be used
 Before starting, the DATA_SIZE sample size is determined.
 The frequencies of interest are the frequency indices written in frequency_k[]
 Calculate the number of required frequencies quantity_k.
-The class Goertzel<DATA_SIZE, (int*)frequency_k, quantity_k> FFT_Goertzel is defined;
+The class 
+	Goertzel<DATA_SIZE, (int*)frequency_k, quantity_k> FFT_Goertzel is defined;
 
 For each sampling cycle, use:
-FFT_Goertzel.write(adc_value); //or signal value
-FFT_Goertzel.getmax();// and immediately get the maximum value (if necessary) 
+
+	FFT_Goertzel.write(adc_value); //or signal value
+  
+	FFT_Goertzel.getmax();// and immediately get the maximum value (if necessary) 
+
 Read in loop:
+
 FFT_Goertzel.read(i); //value without averaging
 
 Modified Goertzel algorithm from Sergey Bakhurin
