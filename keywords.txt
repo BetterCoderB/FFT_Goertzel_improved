@@ -1,0 +1,6 @@
+FFT_Goertzel_improved KEYWORD1
+Goertzel KEYWORD1
+
+read KEYWORD2
+getmax KEYWORD2
+write KEYWORD2
