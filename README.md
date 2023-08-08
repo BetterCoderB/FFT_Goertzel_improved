@@ -1,4 +1,5 @@
 #Modified Goertzel algorithm
+
 The Goertzel algorithm is a special implementation of the Discrete Fourier Transform (DFT) in the form of a recursive filter.
 Unlike the Fast Fourier Transform, which calculates all frequency components of the DFT, the Goertzel algorithm allows you to efficiently calculate the value of a single frequency component.
 The modified Goertzel algorithm allows us to recalculate a given spectral sample at each sampling cycle. This library implements the algorithm on the microcontroller:
