@@ -4,8 +4,9 @@ The Goertzel algorithm is a special implementation of the Discrete Fourier Trans
 Unlike the Fast Fourier Transform, which calculates all frequency components of the DFT, the Goertzel algorithm allows you to efficiently calculate the value of a single frequency component.
 The modified Goertzel algorithm allows us to recalculate a given spectral sample at each sampling cycle. This library implements the algorithm on the microcontroller:
 Example fed signal:
-
-The result is a time-frequency representation of the signal:
+![Signal](https://github.com/BetterCoderB/FFT_Goertzel_improved/blob/main/Signal.png)
+The result is a time-frequency-level representation of the signal:
+![Time-frequency-level](https://github.com/BetterCoderB/FFT_Goertzel_improved/blob/main/Goertzel.gif)
 
 Before starting, the DATA_SIZE sample size is determined.
 The frequencies of interest are the frequency indices written in frequency_k[]
