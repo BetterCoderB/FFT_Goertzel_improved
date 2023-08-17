@@ -1,7 +1,9 @@
+#ifndef _FFT_GOERTZEL_IMPROVED_H
+#define _FFT_GOERTZEL_IMPROVED_H
 #pragma once
 #include <Arduino.h>
 
-template <int DATA_SIZE, int *frequency_k, int quantity_k> class Goertzel {
+template <const int DATA_SIZE, const int *frequency_k, int quantity_k> class Goertzel {
 public:
   Goertzel();
   float read(int k){return level[k];};
@@ -27,7 +29,7 @@ private:
   int count = 0;
 };
 
-template <int DATA_SIZE, int *frequency_k,int quantity_k> Goertzel<DATA_SIZE, frequency_k,quantity_k>::Goertzel() { 
+template <const int DATA_SIZE, const int *frequency_k, int quantity_k> Goertzel<DATA_SIZE, frequency_k,quantity_k>::Goertzel() { 
   for (i = 0; i < quantity_k; i++) {
     ln_W[i] = (2 * PI * frequency_k[i]) / DATA_SIZE;
     W_N[0][i] = cos(ln_W[i]);
@@ -38,7 +40,7 @@ template <int DATA_SIZE, int *frequency_k,int quantity_k> Goertzel<DATA_SIZE, fr
     SN_k0_buff[1][i] = 0;
   }
 }
-template <int DATA_SIZE, int *frequency_k,int quantity_k> void Goertzel<DATA_SIZE, frequency_k,quantity_k>::write(float value) {
+template <const int DATA_SIZE, const int *frequency_k, int quantity_k> void Goertzel<DATA_SIZE, frequency_k,quantity_k>::write(float value) {
   signal_buffer[count % (DATA_SIZE + 1)] = value;
   if (++count >= (DATA_SIZE + 1)) count = 0;
   sN_signal_buffer_read[0] = signal_buffer[(DATA_SIZE + count) % (DATA_SIZE + 1)];         // x[DATA_SIZE]
@@ -51,3 +53,4 @@ template <int DATA_SIZE, int *frequency_k,int quantity_k> void Goertzel<DATA_SIZ
     if (level[i] > value_max) value_max = level[i];
   }
 }
+#endif
