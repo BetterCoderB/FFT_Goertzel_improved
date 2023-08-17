@@ -10,32 +10,33 @@ const int frequency_k[] = {1,  2,  3,  4,  5,  6,  7,  8,  9,  10,  11,  12,  13
 5120Hz / 256 * 1 = 20 Hz
             ...2 = 40 Hz
             ...3 = 60 Hz
+            ............
 */
 
 const int quantity_k = sizeof(frequency_k) / sizeof(int);
 #include <FFT_Goertzel_improved.h>
-Goertzel<DATA_SIZE, (int*)frequency_k, quantity_k> FFT_Goertzel;
+Goertzel<DATA_SIZE, (const int*)frequency_k, quantity_k> FFT_Goertzel;
 
-//#include <signal.h>
-float signal[] = {
-  
-};
+#include "signal.h"
 const int quantity_sample = sizeof(signal) / sizeof(float);
 
 void setup() {
   Serial.begin(115200);
   adc->adc0->setResolution(12);
   adc->adc0->setReference(ADC_REFERENCE::REF_3V3);
-
+while(!Serial);
   float value;
   float max_level;
   int i;
   int j;
   for (j = 0; j < quantity_sample; j++) {
     
-    value = signal[j];  //shift relative to zero
-    FFT_Goertzel.write(value);          //write down the value
-    max_level = FFT_Goertzel.getmax();  //get the maximum value in the given sample
+    //shift relative to zero
+    value = signal[j];  
+    //write down the value
+    FFT_Goertzel.write(value);         
+    //get the maximum value in the given sample
+    max_level = FFT_Goertzel.getmax();  
 
     for (i = 0; i < quantity_k; i++) {
       value = (FFT_Goertzel.read(i) / max_level * 99);  //normalize received value
@@ -43,7 +44,7 @@ void setup() {
       Serial.print(' ');
     }
     Serial.println();
-    delay(50);
+    delay(5);
   };
 }
 void loop() {
