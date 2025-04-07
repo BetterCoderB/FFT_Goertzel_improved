@@ -2,5 +2,8 @@ FFT_Goertzel_improved KEYWORD1
 Goertzel KEYWORD1
 
 read KEYWORD2
+getmagnitude KEYWORD2
+getphase KEYWORD2
+getfriquency KEYWORD2
 getmax KEYWORD2
 write KEYWORD2
